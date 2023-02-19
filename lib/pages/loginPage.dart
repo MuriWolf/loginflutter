@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:loginflutter/pages/signupPage.dart';
+import 'dart:developer';
+import '../classes/CustomTextFieldData.dart';
+import '../widgets/CustomRoundedButon.dart';
+import '../widgets/CustomTextField.dart';
+import '../widgets/HeaderLoginPage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -10,6 +14,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  String nome = "lala";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,33 +26,7 @@ class _LoginPageState extends State<LoginPage> {
               BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
           child: Column(
             children: [
-              Container(
-                width: double.infinity,
-                height: 240,
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Colors.deepOrange, Colors.orange]),
-                    // color: Colors.deepOrange,
-                    borderRadius:
-                        BorderRadius.only(bottomLeft: Radius.circular(100))),
-                child: Stack(
-                  children: const [
-                    Positioned(
-                        bottom: 20,
-                        right: 20,
-                        child: Text(
-                          "Login",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        )),
-                    Center(
-                      child: Icon(Icons.smartphone,
-                          size: 100, color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
+              const HeaderLoginPage(title: "Login"),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
@@ -58,41 +38,11 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       Column(
                         children: [
-                          TextField(
-                            decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.email),
-                              hintText: "Enter your Email",
-                              fillColor: Colors.white,
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(100),
-                                borderSide: const BorderSide(
-                                  width: 0,
-                                  style: BorderStyle.none,
-                                ),
-                              ),
-                            ),
-                          ),
+                          const CustomTextField(icon: Icons.email, placeholder: "Enter your Email"),
                           const SizedBox(
                             height: 14,
                           ),
-                          TextField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.key),
-                              hintText: "Password",
-                              // border: InputBorder.none,
-                              fillColor: Colors.white,
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(100),
-                                borderSide: const BorderSide(
-                                  width: 0,
-                                  style: BorderStyle.none,
-                                ),
-                              ),
-                            ),
-                          ),
+                          const CustomTextField(icon: Icons.key, placeholder: "Password"),
                           const SizedBox(
                             height: 14,
                           ),
@@ -100,6 +50,10 @@ class _LoginPageState extends State<LoginPage> {
                               alignment: Alignment.centerRight,
                               child: const Text("Forgot Password?"))
                         ],
+                      ),
+                      CustomRoundedButton(
+                        title: "sign in",
+                        callback: () {},
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -111,13 +65,17 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           InkWell(
                             onTap: () {
-                              print("clicou!");
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SignupPage()));
                             },
                             child: const Text(
                               "Sign up",
                               style: TextStyle(
-                                color: Colors.deepOrange,
-                              ),
+                                  color: Colors.deepOrange,
+                                  fontWeight: FontWeight.w500),
                             ),
                           ),
                         ],
