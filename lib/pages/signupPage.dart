@@ -24,7 +24,7 @@ class _SignupPageState extends State<SignupPage> {
               BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
           child: Column(
             children: [
-              const HeaderLoginPage(title: "Login"),
+              const HeaderLoginPage(title: "Sign up"),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
@@ -74,7 +74,8 @@ class _SignupPageState extends State<SignupPage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const LoginPage()));
+                                      builder: (context) =>
+                                          const LoginPage()));
                             },
                             child: const Text(
                               "Sign in",

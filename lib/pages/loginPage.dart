@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:loginflutter/pages/signupPage.dart';
 import 'dart:developer';
 import '../classes/CustomTextFieldData.dart';
+import '../classes/userData.dart';
 import '../widgets/CustomRoundedButon.dart';
 import '../widgets/CustomTextField.dart';
 import '../widgets/HeaderLoginPage.dart';
+import 'homePage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -14,7 +16,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String nome = "lala";
+  var userData = UserData();
+
+  var email = TextEditingController(text: "muri@email.com");
+  var password = TextEditingController(text: "wolf27");
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +43,18 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       Column(
                         children: [
-                          const CustomTextField(icon: Icons.email, placeholder: "Enter your Email"),
+                          CustomTextField(
+                              icon: Icons.email,
+                              controller: email,
+                              placeholder: "Enter your Email"),
                           const SizedBox(
                             height: 14,
                           ),
-                          const CustomTextField(icon: Icons.key, placeholder: "Password"),
+                          CustomTextField(
+                            icon: Icons.key,
+                            placeholder: "Password",
+                            controller: password,
+                          ),
                           const SizedBox(
                             height: 14,
                           ),
@@ -53,7 +65,21 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       CustomRoundedButton(
                         title: "sign in",
-                        callback: () {},
+                        callback: () {
+                          if (email.text == userData.getEmail() &&
+                              password.text == userData.getPassoword()) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const HomePage()));
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Center(
+                                        child:
+                                            Text("Wrong Name or password!"))));
+                          }
+                        },
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.end,

@@ -5,10 +5,15 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import '../classes/CustomTextFieldData.dart';
 
 class CustomTextField extends StatefulWidget {
-  const CustomTextField({super.key, required this.icon, required this.placeholder, this.hiddenTxt});
+  const CustomTextField(
+      {super.key,
+      required this.icon,
+      required this.placeholder,
+      this.hiddenTxt, this.controller});
   final IconData icon;
   final String placeholder;
   final bool? hiddenTxt;
+  final TextEditingController? controller;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -18,6 +23,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: widget.controller,
       obscureText: widget.hiddenTxt ?? false,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.all(CustomTextFieldData.paddind),
