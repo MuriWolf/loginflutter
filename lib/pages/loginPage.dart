@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:loginflutter/pages/signupPage.dart';
-import 'dart:developer';
-import '../classes/CustomTextFieldData.dart';
 import '../classes/userData.dart';
 import '../widgets/CustomRoundedButon.dart';
 import '../widgets/CustomTextField.dart';

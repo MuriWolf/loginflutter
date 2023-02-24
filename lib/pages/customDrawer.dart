@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:loginflutter/classes/userData.dart';
+import 'package:loginflutter/widgets/CustomDivider.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
@@ -20,9 +21,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
       clipper: OvalRightBorderClipper(),
       child: Drawer(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.fromLTRB(12, 12, 40, 12),
           child: ListView(
-            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
                 children: [
@@ -64,50 +64,54 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                 ],
               ),
-              Column(
-                children: const [
-                  ListTile(
-                      leading: Icon(Icons.home),
-                      title: Text("Home"),
-                      dense: true,
-                      visualDensity: VisualDensity.compact),
-                  Divider(),
-                  ListTile(
-                      leading: Icon(Icons.person_pin),
-                      title: Text("My profile"),
-                      dense: true,
-                      visualDensity: VisualDensity.compact),
-                  Divider(),
-                  ListTile(
-                      leading: Icon(Icons.message),
-                      title: Text("Messages"),
-                      dense: true,
-                      visualDensity: VisualDensity.compact),
-                  Divider(),
-                  ListTile(
-                      leading: Icon(Icons.notifications),
-                      title: Text("Notifications"),
-                      dense: true,
-                      visualDensity: VisualDensity.compact),
-                  Divider(),
-                  ListTile(
-                      leading: Icon(Icons.settings),
-                      title: Text("Settings"),
-                      dense: true,
-                      visualDensity: VisualDensity.compact),
-                  Divider(),
-                  ListTile(
-                      leading: Icon(Icons.email),
-                      title: Text("Contact us"),
-                      dense: true,
-                      visualDensity: VisualDensity.compact),
-                  Divider(),
-                  ListTile(
-                      leading: Icon(Icons.help),
-                      title: Text("Help"),
-                      dense: true,
-                      visualDensity: VisualDensity.compact),
-                ],
+              DefaultTextStyle.merge(
+                style: const TextStyle(fontWeight: FontWeight.w400),
+                child: Column(
+                  children: const [
+                    ListTile(
+                        leading: Icon(Icons.home),
+                        title: Text("Home"),
+                        dense: true,
+                        visualDensity: VisualDensity.compact),
+                    CustomDivider(),
+                    ListTile(
+                        leading: Icon(Icons.person_pin),
+                        title: Text("My profile"),
+                        dense: true,
+                        visualDensity: VisualDensity.compact),
+                    CustomDivider(),
+                    ListTile(
+                        leading: Icon(Icons.message),
+                        title: Text("Messages"),
+                        dense: true,
+                        visualDensity: VisualDensity.compact),
+                    CustomDivider(),
+                    ListTile(
+                      style: ListTileStyle.list,
+                        leading: Icon(Icons.notifications),
+                        title: Text("Notifications"),
+                        dense: true,
+                        visualDensity: VisualDensity.compact),
+                    CustomDivider(),
+                    ListTile(
+                        leading: Icon(Icons.settings),
+                        title: Text("Settings"),
+                        dense: true,
+                        visualDensity: VisualDensity.compact),
+                    CustomDivider(),
+                    ListTile(
+                        leading: Icon(Icons.email),
+                        title: Text("Contact us"),
+                        dense: true,
+                        visualDensity: VisualDensity.compact),
+                    CustomDivider(),
+                    ListTile(
+                        leading: Icon(Icons.help),
+                        title: Text("Help"),
+                        dense: true,
+                        visualDensity: VisualDensity.compact),
+                  ],
+                ),
               ),
             ],
           ),
