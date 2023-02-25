@@ -14,10 +14,53 @@ class CustomDrawer extends StatefulWidget {
 
 class _CustomDrawerState extends State<CustomDrawer> {
   var userData = UserData();
-  var customDrawerListTextStyle = const TextStyle(
+
+  var customDrawerListTextStyle = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w400,
+    color: Colors.grey.shade600,
   );
+
+  Container drawerNotification(int numberOfNotifications) {
+    String strNumberOfNotifications = "$numberOfNotifications";
+    if (numberOfNotifications > 10) {
+      strNumberOfNotifications = "10+";
+    }
+    return Container(
+      height: 30,
+      width: 30,
+      decoration: BoxDecoration(
+        color: Colors.deepOrangeAccent,
+        borderRadius: BorderRadius.circular(5),
+        boxShadow: [
+          BoxShadow(
+              color: Colors.grey.shade400,
+              blurRadius: 4,
+              offset: const Offset(0, 4))
+        ],
+      ),
+      child: Center(
+          child: Text(
+        strNumberOfNotifications,
+        style: const TextStyle(color: Colors.white),
+      )),
+    );
+  }
+
+  ListTile drawerListTile(
+      IconData listIcon, String listTitle, bool notifications,
+      {int numberOfNotifications = 0}) {
+    return ListTile(
+      horizontalTitleGap: 0,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 0),
+      leading: Icon(listIcon),
+      title: Text(
+        listTitle,
+        style: customDrawerListTextStyle,
+      ),
+      trailing: notifications ? drawerNotification(numberOfNotifications) : const SizedBox(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +68,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
       clipper: OvalRightBorderClipper(),
       child: Drawer(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(12, 40, 40, 12),
+          padding: const EdgeInsets.fromLTRB(16, 20, 40, 16),
           child: ListView(
             children: [
               Stack(
@@ -44,7 +87,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           height: 85,
                           width: 85,
                           decoration: BoxDecoration(
-                            border: Border.all(width: 5, color: Colors.orange),
+                            border: Border.all(
+                                width: 5, color: Colors.deepOrangeAccent),
                             borderRadius:
                                 BorderRadius.circular(100), //<-- SEE HERE
                           ),
@@ -60,6 +104,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         ),
                         Text(
                           userData.getEmail(),
+                          style: TextStyle(
+                            color: Colors.grey.shade600,
+                          ),
                         )
                       ],
                     ),
@@ -68,61 +115,21 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
               Column(
                 children: [
-                  ListTile(
-                    leading: const Icon(Icons.home),
-                    title: Text(
-                      "Home",
-                      style: customDrawerListTextStyle,
-                    ),
-                  ),
+                  drawerListTile(Icons.home, "Home", false),
                   const CustomDivider(),
-                  ListTile(
-                    leading: const Icon(Icons.person_pin),
-                    title: Text(
-                      "My profile",
-                      style: customDrawerListTextStyle,
-                    ),
-                  ),
+                  drawerListTile(Icons.person_pin, "My profile", false),
                   const CustomDivider(),
-                  ListTile(
-                    leading: const Icon(Icons.message),
-                    title: Text(
-                      "Messages",
-                      style: customDrawerListTextStyle,
-                    ),
-                  ),
+                  drawerListTile(Icons.message, "Messages", true,
+                      numberOfNotifications: 12),
                   const CustomDivider(),
-                  ListTile(
-                    leading: const Icon(Icons.notifications),
-                    title: Text(
-                      "Notifications",
-                      style: customDrawerListTextStyle,
-                    ),
-                  ),
+                  drawerListTile(Icons.notifications, "Notifications", true,
+                      numberOfNotifications: 8),
                   const CustomDivider(),
-                  ListTile(
-                    leading: const Icon(Icons.settings),
-                    title: Text(
-                      "Settings",
-                      style: customDrawerListTextStyle,
-                    ),
-                  ),
+                  drawerListTile(Icons.settings, "Settings", false),
                   const CustomDivider(),
-                  ListTile(
-                    leading: const Icon(Icons.email),
-                    title: Text(
-                      "Contact us",
-                      style: customDrawerListTextStyle,
-                    ),
-                  ),
+                  drawerListTile(Icons.email, "Contact us", false),
                   const CustomDivider(),
-                  ListTile(
-                    leading: const Icon(Icons.help),
-                    title: Text(
-                      "Help",
-                      style: customDrawerListTextStyle,
-                    ),
-                  ),
+                  drawerListTile(Icons.help, "Help", false),
                 ],
               ),
             ],
