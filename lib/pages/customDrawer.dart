@@ -14,6 +14,10 @@ class CustomDrawer extends StatefulWidget {
 
 class _CustomDrawerState extends State<CustomDrawer> {
   var userData = UserData();
+  var customDrawerListTextStyle = const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +25,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
       clipper: OvalRightBorderClipper(),
       child: Drawer(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(12, 12, 40, 12),
+          padding: const EdgeInsets.fromLTRB(12, 40, 40, 12),
           child: ListView(
             children: [
               Stack(
                 children: [
                   const Positioned(
-                      top: 20,
-                      right: 20,
-                      child: Icon(Icons.offline_bolt)),
-                  SizedBox(
+                      top: 0, right: 20, child: Icon(Icons.logout)),
+                  Container(
+                    margin: const EdgeInsets.only(top: 16, bottom: 8),
                     height: 150,
                     width: double.infinity,
                     child: Column(
@@ -38,8 +41,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          height: 80,
-                          width: 80,
+                          height: 85,
+                          width: 85,
                           decoration: BoxDecoration(
                             border: Border.all(width: 5, color: Colors.orange),
                             borderRadius:
@@ -57,61 +60,70 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         ),
                         Text(
                           userData.getEmail(),
-                          style: TextStyle(),
                         )
                       ],
                     ),
                   ),
                 ],
               ),
-              DefaultTextStyle.merge(
-                style: const TextStyle(fontWeight: FontWeight.w400),
-                child: Column(
-                  children: const [
-                    ListTile(
-                        leading: Icon(Icons.home),
-                        title: Text("Home"),
-                        dense: true,
-                        visualDensity: VisualDensity.compact),
-                    CustomDivider(),
-                    ListTile(
-                        leading: Icon(Icons.person_pin),
-                        title: Text("My profile"),
-                        dense: true,
-                        visualDensity: VisualDensity.compact),
-                    CustomDivider(),
-                    ListTile(
-                        leading: Icon(Icons.message),
-                        title: Text("Messages"),
-                        dense: true,
-                        visualDensity: VisualDensity.compact),
-                    CustomDivider(),
-                    ListTile(
-                      style: ListTileStyle.list,
-                        leading: Icon(Icons.notifications),
-                        title: Text("Notifications"),
-                        dense: true,
-                        visualDensity: VisualDensity.compact),
-                    CustomDivider(),
-                    ListTile(
-                        leading: Icon(Icons.settings),
-                        title: Text("Settings"),
-                        dense: true,
-                        visualDensity: VisualDensity.compact),
-                    CustomDivider(),
-                    ListTile(
-                        leading: Icon(Icons.email),
-                        title: Text("Contact us"),
-                        dense: true,
-                        visualDensity: VisualDensity.compact),
-                    CustomDivider(),
-                    ListTile(
-                        leading: Icon(Icons.help),
-                        title: Text("Help"),
-                        dense: true,
-                        visualDensity: VisualDensity.compact),
-                  ],
-                ),
+              Column(
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.home),
+                    title: Text(
+                      "Home",
+                      style: customDrawerListTextStyle,
+                    ),
+                  ),
+                  const CustomDivider(),
+                  ListTile(
+                    leading: const Icon(Icons.person_pin),
+                    title: Text(
+                      "My profile",
+                      style: customDrawerListTextStyle,
+                    ),
+                  ),
+                  const CustomDivider(),
+                  ListTile(
+                    leading: const Icon(Icons.message),
+                    title: Text(
+                      "Messages",
+                      style: customDrawerListTextStyle,
+                    ),
+                  ),
+                  const CustomDivider(),
+                  ListTile(
+                    leading: const Icon(Icons.notifications),
+                    title: Text(
+                      "Notifications",
+                      style: customDrawerListTextStyle,
+                    ),
+                  ),
+                  const CustomDivider(),
+                  ListTile(
+                    leading: const Icon(Icons.settings),
+                    title: Text(
+                      "Settings",
+                      style: customDrawerListTextStyle,
+                    ),
+                  ),
+                  const CustomDivider(),
+                  ListTile(
+                    leading: const Icon(Icons.email),
+                    title: Text(
+                      "Contact us",
+                      style: customDrawerListTextStyle,
+                    ),
+                  ),
+                  const CustomDivider(),
+                  ListTile(
+                    leading: const Icon(Icons.help),
+                    title: Text(
+                      "Help",
+                      style: customDrawerListTextStyle,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

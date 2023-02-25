@@ -19,7 +19,19 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: const Text("Home"),
         ),
-        body: const Center(child: Text("Here is home!")),
+        body: Padding(
+          padding: const EdgeInsets.all(16),
+          child: ListView(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 150,
+                
+                color: Colors.lightBlue,
+              )
+            ],
+          ),
+        ),
         drawer: const CustomDrawer(),
       ),
     );
